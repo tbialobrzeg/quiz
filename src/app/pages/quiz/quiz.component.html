@@ -22,7 +22,7 @@
         <h2 class="card-title text-center">{{title}}</h2>
         <div class="row" *ngIf="currentQuizCategory != ''">
           <div class="col-12 col-lg-4 order-lg-2 mt-1 mb-1  text-center">
-            <button *ngFor="let question of questions; let i = index" (click)="useQuestion(i)"
+            <button *ngFor="let question of questions; let i = index" (click)="selectQuestion(i)"
               class="btn btn-primary m-1 qa-circle">{{i+1}}</button>
           </div>
           <div class="col-12 col-lg-8 order-lg-1 mt-1 mb-1">

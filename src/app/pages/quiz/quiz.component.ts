@@ -15,23 +15,23 @@ export interface CategoriesIsLockedState {
 })
 export class QuizComponent implements OnInit, OnDestroy {
 
+  private readonly QUIZ_LIST = ["design patterns", "angular", "java"];
+  private subscription !: Subscription;
   protected quizData: QuizData = {};
   protected currentQuizCategory: string = "";
-  protected currentQuestion: number = 0;
+  protected currentQuestionIndex: number = 0;
   protected error: string | null = null;
-  protected isLoaded: boolean = false;
-  private subscription !: Subscription;
   protected categoriesIsLockedState: CategoriesIsLockedState = {};
+
 
   constructor(protected dataService: DataService, private router: Router) { }
 
   ngOnInit(): void {
-    this.subscription = this.dataService.getData().subscribe(
+    this.subscription = this.dataService.loadQuiz(this.QUIZ_LIST).subscribe(
       {
         next: data => {
           this.quizData = data;
-          this.currentQuizCategory = Object.keys(data)[0];
-          this.isLoaded = true;
+          this.currentQuizCategory = Object.keys(data)[0] || "";
           Object.keys(this.quizData).forEach(q => this.categoriesIsLockedState[q] = false);
         },
         error: (error) => {
@@ -44,60 +44,65 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  get question(): Question {
-    return this.quizData[this.currentQuizCategory][this.currentQuestion];
+  protected get isLoaded() {
+    return Object.keys(this.quizData).length > 0;
   }
 
-  get questions(): Question[] {
+  protected get question(): Question {
+    return this.quizData[this.currentQuizCategory][this.currentQuestionIndex];
+  }
+
+  protected get questions(): Question[] {
     return this.quizData[this.currentQuizCategory];
   }
 
-  get title(): string {
+  protected get title(): string {
     return this.currentQuizCategory.toUpperCase();
   }
 
-  get questionIndex() {
+  protected get questionIndex() {
     return 1 + this.questions.indexOf(this.question);
   }
 
-  get categories(): string[] {
+  protected get categories(): string[] {
     return Object.keys(this.quizData);
   }
 
-  setCategory(event: Event) {
+  protected setCategory(event: Event) {
     this.currentQuizCategory = (event.target as HTMLSelectElement).value;
-    this.currentQuestion = 0;
+    this.currentQuestionIndex = 0;
   }
 
-  next() {
-    this.currentQuestion = Math.min(this.currentQuestion + 1, this.questions.length - 1);
+  protected next() {
+    this.currentQuestionIndex = Math.min(this.currentQuestionIndex + 1, this.questions.length - 1);
   }
 
-  previous() {
-    this.currentQuestion = Math.max(this.currentQuestion - 1, 0);
+  protected previous() {
+    this.currentQuestionIndex = Math.max(this.currentQuestionIndex - 1, 0);
   }
 
-  useQuestion(index: number) {
-    this.currentQuestion = index;
+  protected selectQuestion(index: number) {
+    this.currentQuestionIndex = index;
   }
 
-  lockCurrentCategory() {
+  protected lockCurrentCategory() {
     this.categoriesIsLockedState[this.currentQuizCategory] = true;
     let activeCategories = Object.keys(this.quizData).filter(name => !this.categoriesIsLockedState[name]);
-    if (activeCategories.length > 0)
-      this.currentQuizCategory = activeCategories[0]
-    else this.currentQuizCategory = "";
+    if (activeCategories.length > 0) {
+      this.currentQuizCategory = activeCategories[0];
+    }
+    else {
+      this.currentQuizCategory = "";
+    }
+    this.currentQuestionIndex = 0;
   }
 
-  isCategoryLocked(name?: string) {
+  protected isCategoryLocked(name?: string) {
     let categoryName = name ? name : this.currentQuizCategory
     return this.categoriesIsLockedState[categoryName];
   }
 
-  submitAll() {
+  protected submitAll() {
     this.router.navigateByUrl("results");
   }
-
-
-
 }

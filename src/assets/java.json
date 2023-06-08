@@ -1,0 +1,52 @@
+[
+  {
+    "content": "What is the purpose of a constructor in Java?",
+    "answers": [
+      "To create a new object",
+      "To destroy an object",
+      "To modify an object",
+      "To access an object"
+    ],
+    "correctAnswerID": 0
+  },
+  {
+    "content": "What is the purpose of the 'static' keyword in Java?",
+    "answers": [
+      "To create a new object",
+      "To access a variable or method without creating an object",
+      "To modify an object",
+      "To destroy an object"
+    ],
+    "correctAnswerID": 1
+  },
+  {
+    "content": "What is the purpose of the 'final' keyword in Java?",
+    "answers": [
+      "To create a new object",
+      "To access a variable or method without creating an object",
+      "To modify an object",
+      "To make a variable or method unchangeable"
+    ],
+    "correctAnswerID": 3
+  },
+  {
+    "content": "What is the purpose of the 'try-catch' block in Java?",
+    "answers": [
+      "To create a new object",
+      "To access a variable or method without creating an object",
+      "To modify an object",
+      "To handle exceptions"
+    ],
+    "correctAnswerID": 3
+  },
+  {
+    "content": "What is the purpose of the 'public' keyword in Java?",
+    "answers": [
+      "To create a new object",
+      "To access a variable or method without creating an object",
+      "To modify an object",
+      "To make a variable or method accessible from anywhere"
+    ],
+    "correctAnswerID": 3
+  }
+]

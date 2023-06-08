@@ -1,0 +1,52 @@
+[
+  {
+    "content": "What is the purpose of design patterns?",
+    "answers": [
+      "To provide reusable solutions to common programming problems",
+      "To make code more complex",
+      "To slow down development time",
+      "To make code less efficient"
+    ],
+    "correctAnswerID": 0
+  },
+  {
+    "content": "What is the Singleton pattern?",
+    "answers": [
+      "A pattern that restricts the instantiation of a class to one object",
+      "A pattern that allows for multiple instances of a class",
+      "A pattern that only works with strings",
+      "A pattern that is only used in web development"
+    ],
+    "correctAnswerID": 0
+  },
+  {
+    "content": "What is the Observer pattern?",
+    "answers": [
+      "A pattern where an object maintains a list of its dependents and is notified when any of its dependents undergo a change",
+      "A pattern where an object is created from a prototype",
+      "A pattern where an object is created by cloning an existing object",
+      "A pattern where an object is created by a factory method"
+    ],
+    "correctAnswerID": 0
+  },
+  {
+    "content": "What is the Factory pattern?",
+    "answers": [
+      "A pattern that creates objects without specifying the exact class to create",
+      "A pattern that restricts the instantiation of a class to one object",
+      "A pattern that allows for multiple instances of a class",
+      "A pattern that is only used in web development"
+    ],
+    "correctAnswerID": 0
+  },
+  {
+    "content": "What is the Decorator pattern?",
+    "answers": [
+      "A pattern that adds behavior to an object dynamically",
+      "A pattern that restricts the instantiation of a class to one object",
+      "A pattern that allows for multiple instances of a class",
+      "A pattern that is only used in web development"
+    ],
+    "correctAnswerID": 0
+  }
+]

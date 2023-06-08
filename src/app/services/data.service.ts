@@ -1,26 +1,40 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { QuizData } from './model';
-import { tap, Observable, of } from 'rxjs';
+import { Question, QuizData } from './model';
+import { Observable, of, forkJoin, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private quizData: QuizData | null = null;
+  private quizData: QuizData = {};
 
   constructor(private http: HttpClient) { }
 
-  public getData(): Observable<QuizData> {
-    if (this.quizData) {
-      return of(this.quizData)
+  public loadQuiz(quizList: string[]) {
+
+    let fileNames = quizList.map(name => name.replace(/ /g, "_") + ".json");
+    let streams: Observable<Question[]>[] = [];
+
+    for (let fileName of fileNames) {
+      streams.push(this.http.get<Question[]>('assets/' + fileName));
     }
-    else {
-      return this.http.get<QuizData>('assets/data.json').pipe(tap((data) => {
-        this.quizData = data;
-      }))
-    }
+
+    return forkJoin(streams).pipe(map(quizArray => {
+      this.quizData = {}
+      for (let i = 0; i < quizList.length; i++) {
+        let qName = quizList[i];
+        let qData = quizArray[i]
+        this.quizData[qName] = qData;
+      }
+      return this.quizData;
+    }))
+
+  }
+
+  public getData() {
+    return this.quizData;
   }
 }
 

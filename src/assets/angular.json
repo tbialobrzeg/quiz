@@ -1,0 +1,52 @@
+[
+  {
+    "content": "What is a component in Angular?",
+    "answers": [
+      "A reusable piece of code",
+      "A database table",
+      "A CSS class",
+      "A JavaScript function"
+    ],
+    "correctAnswerID": 0
+  },
+  {
+    "content": "What is data binding in Angular?",
+    "answers": [
+      "A way to connect data between components",
+      "A way to style HTML elements",
+      "A way to create animations",
+      "A way to handle user input"
+    ],
+    "correctAnswerID": 0
+  },
+  {
+    "content": "What is a directive in Angular?",
+    "answers": [
+      "A way to manipulate the DOM",
+      "A way to create variables",
+      "A way to handle events",
+      "A way to import external libraries"
+    ],
+    "correctAnswerID": 0
+  },
+  {
+    "content": "What is a service in Angular?",
+    "answers": [
+      "A way to share data between components",
+      "A way to create animations",
+      "A way to handle user input",
+      "A way to style HTML elements"
+    ],
+    "correctAnswerID": 0
+  },
+  {
+    "content": "What is RxJS in Angular?",
+    "answers": [
+      "A library for reactive programming",
+      "A CSS framework",
+      "A database",
+      "A JavaScript function"
+    ],
+    "correctAnswerID": 0
+  }
+]
