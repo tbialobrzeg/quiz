@@ -33,7 +33,7 @@ export class DataService {
 
   }
 
-  public getData() {
+  public getLoadedQuizData() {
     return this.quizData;
   }
 }

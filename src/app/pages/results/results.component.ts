@@ -18,7 +18,7 @@ export class ResultsComponent implements OnInit {
   constructor(protected dataService: DataService) { }
 
   ngOnInit(): void {
-    this.quizData = this.dataService.getData();
+    this.quizData = this.dataService.getLoadedQuizData();
     this.calculateScore();
   }
 
