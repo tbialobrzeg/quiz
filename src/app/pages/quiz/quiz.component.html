@@ -5,7 +5,7 @@
 <div *ngIf="!error && isLoaded">
   <div class="row m-0 mt-2" *ngIf="currentQuizCategory != ''">
     <div class="col-auto">
-      <label for="selectcategory" class="col-form-label">Select category:</label>
+      <label for="selectcategory" class="col-form-label">Select quiz:</label>
     </div>
     <div class="col-auto">
       <select [(ngModel)]="this.currentQuizCategory" id="selectcategory" class="form-select"
@@ -21,11 +21,11 @@
       <div class="card-body">
         <h2 class="card-title text-center">{{title}}</h2>
         <div class="row" *ngIf="currentQuizCategory != ''">
-          <div class="col-12 col-md-3 order-md-2 mt-1 mb-1  text-center">
+          <div class="col-12 col-lg-4 order-lg-2 mt-1 mb-1  text-center">
             <button *ngFor="let question of questions; let i = index" (click)="useQuestion(i)"
               class="btn btn-primary m-1 qa-circle">{{i+1}}</button>
           </div>
-          <div class="col-12 col-md-9 order-md-1 mt-1 mb-1">
+          <div class="col-12 col-lg-8 order-lg-1 mt-1 mb-1">
             <qa-question [question]="question" [index]="questionIndex" [disabled]="isCategoryLocked()"></qa-question>
           </div>
 
