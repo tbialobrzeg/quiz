@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+.qa-circle {
+  border-radius: 50% !important;
+}
+
+.qa-scores-parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.qa-scores-line {
+  flex-grow: 1;
+  margin-left: 8px;
+  margin-right: 8px;
+  position: relative;
+  bottom: -7px;
+  border-bottom: 1px dotted black;
+}
