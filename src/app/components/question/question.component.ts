@@ -19,7 +19,7 @@ export class QuestionComponent {
 
   constructor() { }
 
-  setAnswer(index: number) {
+  protected setAnswer(index: number) {
     this.question.userAnswer = index;
   }
 
