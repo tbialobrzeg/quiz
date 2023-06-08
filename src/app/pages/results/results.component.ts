@@ -41,7 +41,7 @@ export class ResultsComponent implements OnInit {
     return this.categoryNames.length > 0;
   }
 
-  protected getScores(categoryName: string) {
+  protected getScoresText(categoryName: string) {
     let score = 0;
     let total = this.quizData[categoryName].length;
     for (let question of this.quizData[categoryName]) {
