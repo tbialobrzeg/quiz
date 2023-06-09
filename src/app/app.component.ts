@@ -6,11 +6,6 @@ import { DataService } from './services/data.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-
-  protected error: string | null = null;
-  constructor(private dataService: DataService) { }
-
-  ngOnInit(): void {
-  }
+export class AppComponent {
+  constructor() { }
 }
