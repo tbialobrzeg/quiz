@@ -9,7 +9,7 @@
     </div>
     <div class="col-auto">
       <select [(ngModel)]="this.currentQuizCategory" id="selectcategory" class="form-select"
-        aria-label="Category selector">
+        aria-label="Category selector" (change)="setCategory($event)">
         <option *ngFor="let category of categories" [disabled]="isCategoryLocked(category)" value="{{category}}">
           {{category}}</option>
       </select>
