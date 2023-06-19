@@ -14,9 +14,6 @@ export class QuestionComponent {
   @Input()
   public index !: number;
 
-  @Input()
-  public disabled: boolean = false;
-
   constructor() { }
 
   protected setAnswer(index: number) {

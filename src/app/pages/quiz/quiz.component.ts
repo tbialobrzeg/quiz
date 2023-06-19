@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 import { Question, QuizData } from 'src/app/services/model';
+import { StorageMap } from '@ngx-pwa/local-storage';
 
 export interface CategoriesIsLockedState {
   [key: string]: boolean;
@@ -24,7 +25,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   protected categoriesIsLockedState: CategoriesIsLockedState = {};
 
 
-  constructor(protected dataService: DataService, private router: Router) { }
+  constructor(protected dataService: DataService, private router: Router, private localStorage: StorageMap) { }
 
   ngOnInit(): void {
     this.subscription = this.dataService.loadQuiz(this.QUIZ_LIST).subscribe(
@@ -68,8 +69,8 @@ export class QuizComponent implements OnInit, OnDestroy {
     return Object.keys(this.quizData);
   }
 
-  protected setCategory(event: Event) {
-    this.currentQuizCategory = (event.target as HTMLSelectElement).value;
+  protected setCategory(category : string) {
+    this.currentQuizCategory = category;
     this.currentQuestionIndex = 0;
   }
 
@@ -103,6 +104,11 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   protected submitAll() {
+    this.saveToLocalStorage();
     this.router.navigateByUrl("results");
+  }
+
+  private saveToLocalStorage() {
+    this.localStorage.set("quiz_data", JSON.stringify(this.quizData)).subscribe(() => {});
   }
 }

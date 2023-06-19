@@ -1,65 +1,49 @@
-<div *ngIf="error">
-  <p class="m-4"><b>Error: </b>{{error}}</p>
-</div>
+<ng-container *ngIf="error">
+  <p class="qa-mb-2"><b>Error: </b>{{error}}</p>
+</ng-container>
 
-<div *ngIf="!error && isLoaded">
-  <div class="row m-0 mt-2" *ngIf="currentQuizCategory != ''">
-    <div class="col-auto">
-      <label for="selectcategory" class="col-form-label">Select quiz:</label>
-    </div>
-    <div class="col-auto">
-      <select [(ngModel)]="this.currentQuizCategory" id="selectcategory" class="form-select"
-        aria-label="Category selector" (change)="setCategory($event)">
-        <option *ngFor="let category of categories" [disabled]="isCategoryLocked(category)" value="{{category}}">
-          {{category}}</option>
-      </select>
-    </div>
-  </div>
+<ng-container *ngIf="!error && isLoaded && currentQuizCategory != ''">
+  <mat-card class="qa-mt-2 qa-mb-2">
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Select quiz:</mat-label>
+        <mat-select [(value)]="currentQuizCategory" id="selectcategory" (selectionChange)="setCategory($event.value)">
+          <mat-option *ngFor="let category of categories" [disabled]="isCategoryLocked(category)" [value]="category">
+            {{category}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
 
-  <div class="row m-0 mt-2">
-    <div class="card">
-      <div class="card-body">
-        <h2 class="card-title text-center">{{title}}</h2>
-        <div class="row" *ngIf="currentQuizCategory != ''">
-          <div class="col-12 col-lg-4 order-lg-2 mt-1 mb-1  text-center">
-            <button *ngFor="let question of questions; let i = index" (click)="selectQuestion(i)"
-              class="btn btn-primary m-1 qa-circle">{{i+1}}</button>
-          </div>
-          <div class="col-12 col-lg-8 order-lg-1 mt-1 mb-1">
-            <qa-question [question]="question" [index]="questionIndex" [disabled]="isCategoryLocked()"></qa-question>
-          </div>
 
-        </div>
-        <div class="row" *ngIf="currentQuizCategory != ''">
-          <div class="col-12 p-3">
-            <div class="btn-toolbar">
-              <div class="btn-group" role="group" aria-label="next & previous question">
-                <button class="btn btn-outline-secondary" (click)="previous()">Previous</button>
-                <button class="btn btn-primary" (click)="next()">Next</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row" *ngIf="currentQuizCategory == ''">
-          <div class="col-12 p-3">
-            <p class="bg-light p-3">You submited all categories, press 'Submit all and finish' button.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+<mat-card class="qa-mb-2">
+  <mat-card-header>
+    <h2>{{title}}</h2>
+  </mat-card-header>
 
-    <div class="card mt-4">
-      <div class="row mt-2 mb-2">
-        <div class="col-12 p-3 d-flex justify-content-center">
-          <div class="btn-toolbar ">
-            <div class="btn-group" role="group" aria-label="next & previous question">
-              <button (click)="lockCurrentCategory()" *ngIf="currentQuizCategory != ''" class="btn btn-primary">Submit
-                page</button>
-              <button (click)="submitAll()" class="btn btn-secondary">Submit all and finish</button>
-            </div>
-          </div>
-        </div>
-      </div>
+  <mat-card-content *ngIf="currentQuizCategory != ''">
+    <qa-question [question]="question" [index]="questionIndex"></qa-question>
+    <div class="qa-mt-4">
+      <mat-label>Navigate questions:</mat-label>
+      <button mat-flat-button color="warn" *ngFor="let question of questions; let i = index" (click)="selectQuestion(i)"
+        class="mat-mini-fab">{{i+1}}</button>
+      <button mat-flat-button color="accent" (click)="previous()">Previous</button>
+      <button mat-flat-button color="primary" (click)="next()">Next</button>
     </div>
-  </div>
-</div>
+  </mat-card-content>
+
+  <mat-card-content *ngIf="currentQuizCategory == ''">
+    <p>You submitted all categories, press 'Submit all and finish' button.</p>
+  </mat-card-content>
+  
+</mat-card>
+
+<mat-card>
+  <mat-card-content>
+    <button mat-flat-button color="primary" (click)="lockCurrentCategory()" *ngIf="currentQuizCategory != ''">Submit
+      page</button>
+    <button mat-flat-button color="warn" (click)="submitAll()">Submit all and finish</button>
+  </mat-card-content>
+</mat-card>

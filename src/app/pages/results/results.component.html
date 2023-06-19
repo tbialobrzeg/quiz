@@ -1,36 +1,28 @@
-<div *ngIf="error">
-  <p class="m-4"><b>Error: </b>{{error}}</p>
-</div>
+<ng-container *ngIf="error">
+  <p><b>Error: </b>{{error}}</p>
+</ng-container>
 
-<div *ngIf="!error && isLoaded">
-  <div class="row m-0 mt-2">
-    <div class="card">
-      <div class="card-body">
-        <h2 class="card-title text-center">Results</h2>
+<ng-container *ngIf="!error && isLoaded">
+  <mat-card>
+    <mat-card-header class="qa-center">
+      <h2>Results</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{totalScore}} of {{totalQuestions}} questions answered correctly</p>
+      <h3 class="card-title qa-center">Categories</h3>
+      <p *ngFor="let name of categoryNames" class="qa-scores-parent qa-mb-2">
+        <span><b class="text-uppercase">{{name}}</b></span>
+        <span class="qa-scores-line"></span>
+        <span class="float-end">{{getScoresText(name)}}</span>
+      </p>
+      <p class="qa-mt-4 qa-scores-parent">
+        <span><b class="text-success text-uppercase">Overall</b></span>
+        <span class="qa-scores-line"></span>
+        <span>{{totalScore}} of {{totalQuestions}}</span>
+      </p>
 
-        <p>{{totalScore}} of {{totalQuestions}} questions answered correctly</p>
+      <button mat-raised-button color="primary" class="qa-mt-4">Click here to continue</button>
 
-        <div class="mt-2">
-          <h3 class="card-title mb-2 text-center">Categories</h3>
-          <div *ngFor="let name of categoryNames" class="qa-scores-parent mb-3">
-            <span><b class="text-uppercase">{{name}}</b></span>
-            <span class="qa-scores-line"></span>
-            <span class="float-end">{{getScoresText(name)}}</span>
-          </div>
-          <div class="mt-5 qa-scores-parent">
-            <span><b class="text-success text-uppercase">Overall</b></span>
-            <span class="qa-scores-line"></span>
-            <span class="text-success float-end">{{totalScore}} of {{totalQuestions}}</span>
-          </div>
-        </div>
-
-
-        <div class="btn-toolbar mt-4">
-          <div class="btn-group" role="group" aria-label="next & previous question">
-            <button class="btn btn-success">Click here to continue</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
+    </mat-card-content>
+  </mat-card>
+</ng-container>

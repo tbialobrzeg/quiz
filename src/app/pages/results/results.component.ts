@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 import { QuizData } from 'src/app/services/model';
+import { StorageMap } from '@ngx-pwa/local-storage';
 
 @Component({
   selector: 'app-results',
@@ -15,11 +15,15 @@ export class ResultsComponent implements OnInit {
   protected totalScore: number = 0;
   protected totalQuestions: number = 0;
 
-  constructor(protected dataService: DataService) { }
+  constructor(protected dataService: DataService, private localStorage: StorageMap) { }
 
   ngOnInit(): void {
-    this.quizData = this.dataService.getLoadedQuizData();
-    this.calculateScore();
+    this.localStorage.get("quiz_data", { type: 'string' }).subscribe(quizData => {
+      if (quizData) {
+        this.quizData = JSON.parse((quizData));
+        this.calculateScore();
+      }
+    })
   }
 
   private calculateScore() {

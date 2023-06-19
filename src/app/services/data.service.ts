@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Question, QuizData } from './model';
-import { Observable, of, forkJoin, map } from 'rxjs';
+import { Observable, forkJoin, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,7 @@ export class DataService {
         let qData = quizArray[i]
         this.quizData[qName] = qData;
       }
+
       return this.quizData;
     }))
 
