@@ -70,3 +70,7 @@ body {
 button {
   margin: 8px !important;
 }
+
+.mat-radio-label-content {
+  white-space: break-spaces !important;
+}

@@ -26,9 +26,9 @@
   <mat-card-content *ngIf="currentQuizCategory != ''">
     <qa-question [question]="question" [index]="questionIndex"></qa-question>
     <div class="qa-mt-4">
-      <mat-label>Navigate questions:</mat-label>
+      <mat-label>Navigate questions:</mat-label><br>
       <button mat-flat-button color="warn" *ngFor="let question of questions; let i = index" (click)="selectQuestion(i)"
-        class="mat-mini-fab">{{i+1}}</button>
+        class="mat-mini-fab">{{i+1}}</button><br>
       <button mat-flat-button color="accent" (click)="previous()">Previous</button>
       <button mat-flat-button color="primary" (click)="next()">Next</button>
     </div>
